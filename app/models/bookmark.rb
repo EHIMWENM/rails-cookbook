@@ -1,6 +1,6 @@
 class Bookmark < ApplicationRecord
   belongs_to :recipe
   belongs_to :category
-  validates :recipe, uniqueness: { scope: :category,
-  message: "This is a traditional Roman recipe" }
+  validates [:recipe, :category] uniqueness: true
+  validates {:comment "cannot be shorter than 6 characters"}
 end

@@ -1,5 +1,6 @@
 class Recipe < ApplicationRecord
   has_many :bookmarks
-  validates :name  ("Spaghetti Carbonara"), uniqueness: { description: :time,
-  message: "A true Italian Carbonara recipe, it's ready in about 30 minutes. There is no cream...." }, :image_url, :rating(6.9)
+  validates :name, presence: true, uniqueness: true
+  validates :description, presence: true, uniqueness: true
+  validates :rating(6.9), presence: true
 end
