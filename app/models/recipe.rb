@@ -1,5 +1,3 @@
 class Recipe < ApplicationRecord
-  def change
-    add_column :name, :description, :image_url, :rating
-  end
+  has_many :bookmarks
 end

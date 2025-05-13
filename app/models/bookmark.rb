@@ -1,5 +1,4 @@
 class Bookmark < ApplicationRecord
-  def change
-    add_column :comment, :recipe_id, :category_id
-  end
+  belongs_to :recipe
+  belongs_to :category
 end
