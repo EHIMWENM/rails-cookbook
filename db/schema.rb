@@ -15,15 +15,17 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_12_155922) do
   enable_extension "plpgsql"
 
   create_table "bookmarks", force: :cascade do |t|
-    t.string "name"
     t.string "comment"
+    t.bigint "recipe_id", null: false
+    t.bigint "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_bookmarks_on_category_id"
+    t.index ["recipe_id"], name: "index_bookmarks_on_recipe_id"
   end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
-    t.integer "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -31,19 +33,12 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_12_155922) do
   create_table "recipes", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.string "image"
-    t.string "url"
-    t.string "string"
-    t.integer "rating"
+    t.string "image_url"
+    t.float "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "restaurants", force: :cascade do |t|
-    t.string "name"
-    t.integer "rating"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
+  add_foreign_key "bookmarks", "categories"
+  add_foreign_key "bookmarks", "recipes"
 end

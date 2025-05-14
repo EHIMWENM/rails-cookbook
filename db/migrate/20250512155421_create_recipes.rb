@@ -3,10 +3,8 @@ class CreateRecipes < ActiveRecord::Migration[7.1]
     create_table :recipes do |t|
       t.string :name
       t.string :description
-      t.string :image
-      t.string :url
-      t.string :string
-      t.integer :rating
+      t.string :image_url
+      t.float :rating
 
       t.timestamps
     end
